@@ -1,0 +1,501 @@
+code 1:
+OUTPUT_PATH = Path(_file_).parent
+ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\hp\Desktop\ECG\Gui\build\assets\frame0")
+
+
+def relative_to_assets(path: str) -> Path: 
+    return ASSETS_PATH / Path(path)
+
+import pyrebase
+
+firebaseConfig = {
+  'apiKey': "AIzaSyD7ZpxBoqDdmAJlNeyucRD6pmUzdS0eXQg",
+  'authDomain': "logins-bc256.firebaseapp.com",
+  'databaseURL': 'https://logins-bc256-default-rtdb.firebaseio.com/',
+  'projectId': "logins-bc256",
+  'storageBucket': "logins-bc256.appspot.com",
+  'messagingSenderId': "862946887210",
+  'appId': "1:862946887210:web:c2c63a93aafbcdbd1ae553",
+  'measurementId': "G-23HCY57Z3Z"
+}
+firebase =pyrebase.initialize_app(firebaseConfig)
+auth = firebase.auth()
+firebase = pyrebase.initialize_app(firebaseConfig)
+auth = firebase.auth()
+def login(E, P):
+    print("Login...")
+    email = E
+    password = P
+    try:
+        auth.sign_in_with_email_and_password(email, password)
+  print('Successfully logged in!')
+        window.destroy()
+        import gui1
+    except:
+        print("Invalid Email or password. Please try again.")
+        login()
+
+def signup(E, P):
+    print("Signup...")
+    email = E
+    password = P
+    try:
+        auth.create_user_with_email_and_password(email, password)
+        print("Successfully signed up!")
+        window.destroy()
+        import gui
+    except:
+        print("Email already exists. Please try again.")
+        signup()
+
+window = Tk()
+window.title("Authentications")
+window.geometry("1100x780")
+window.configure(bg="#FF0080")
+
+
+canvas = Canvas(
+    window,
+    height = 900,
+    width = 1360,
+bd = 0,
+    highlightthickness = 0,
+    relief = "ridge"
+)
+
+canvas.place(x = 0, y = 0)
+image_image_1 = PhotoImage(
+    file=relative_to_assets("images_1.png"))
+image_1 = canvas.create_image(
+    680.0,
+    450.0,
+    image=image_image_1
+)
+
+image_image_2 = PhotoImage(
+    file=relative_to_assets("image_2.png"))
+image_2 = canvas.create_image(
+    880.0,
+    472.0,
+    image=image_image_2
+)
+
+canvas.create_text(
+    712.0,
+    235.0,
+    anchor="nw",
+    text="User Login System\n",
+    fill="#060000",
+    font=("Inter Medium", 36 * -1)
+)
+
+canvas.create_text(
+    712.0,
+    306.0,
+    anchor="nw",
+text="Email",
+    fill="#000000",
+    font=("Satoshi Bold", 18 * -1)
+)
+
+canvas.create_text(
+    712.0,
+    397.0,
+    anchor="nw",
+    text="Password",
+    fill="#030000",
+    font=("Satoshi Bold", 18 * -1)
+)
+
+entry_image_1 = PhotoImage(
+    file=relative_to_assets("entry_1.png"))
+entry_bg_1 = canvas.create_image(
+    850.0,
+    364.5,
+    image=entry_image_1
+)
+E = Entry(
+    bd=0,
+    bg="#FFFAFA",
+    fg="#000716",
+    highlightthickness=0,
+    font=('Arial 15 bold')
+)
+E.place(
+    x=712.0,
+    y=342.0,
+    width=288.0,
+    height=43.0
+)
+entry_image_2 = PhotoImage(
+    file=relative_to_assets("entry_2.png"))
+entry_bg_2 = canvas.create_image(
+    850.0,
+    443.5,
+    image=entry_image_2
+)
+P = Entry(
+    bd=0,
+    bg="#FFFBFB",
+    fg="#000716",
+    highlightthickness=0,
+    font=('Arial 15 bold')
+)
+P.place(
+    x=712.0,
+    y=421.0,
+    width=288.0,
+    height=43.0
+)
+
+canvas.create_rectangle(
+    789.0,
+    352.0,
+    807.0,
+    372.29698753356934,
+    fill="#000000",
+    outline="")
+
+canvas.create_rectangle(
+    789.0,
+    433.0,
+    807.0,
+    454.0,
+ fill="#000000",
+    outline="")
+
+button_image_1 = PhotoImage(
+    file=relative_to_assets("button_1.png"))
+button_1 = Button(
+    image=button_image_1,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: login(E.get(), P.get()),  # Pass email and password arguments
+    relief="flat"
+
+)
+
+button_1.place(
+    x=690.0,
+    y=514.0,
+    width=318.0,
+    height=45.0
+)
+
+button_image_2 = PhotoImage(
+    file=relative_to_assets("button_2.png"))
+# button_2 = Button(
+#     image=button_image_2,
+#     borderwidth=0,
+#     highlightthickness=0,
+#     command=lambda: signup(E.get(), P.get()),
+#     relief="flat"
+# )
+button_2 = Button(
+    image=button_image_2,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: signup(E.get(), P.get()),  # Pass email and password arguments
+    relief="flat"
+)
+
+button_2.place(
+    x=690,
+    y=607.0,
+    width=317.6448974609375,
+    height=45.0
+)
+window.resizable(False, False)
+window.mainloop()
+code 2:
+from tkinter import Tk, Canvas, Button, PhotoImage
+from PIL import Image, ImageTk
+from pathlib import Path
+
+OUTPUT_PATH = Path(_file_).parent
+ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\hp\Desktop\ECG\Gui\build\assets\frame1")
+
+
+def relative_to_assets(path: str) -> Path:
+    return ASSETS_PATH / Path(path)
+
+
+def button():
+    window.destroy()
+    import gui2
+
+
+window = Tk()
+window.title("ECG")
+window.geometry("1078x671")
+window.configure(bg="#E5C7CD")
+
+canvas = Canvas(
+    window,
+    bg="#E5C7CD",
+    height=671,
+    width=1078,
+    bd=0,
+    highlightthickness=0,
+    relief="ridge"
+)
+canvas.place(x=0, y=0)
+
+# Load and resize the image
+image_path = relative_to_assets("Images2.png")
+original_image = Image.open(image_path)
+resized_image = original_image.resize((1078, 671), Image.ANTIALIAS)
+image_1 = ImageTk.PhotoImage(resized_image)
+
+# Create image on canvas
+canvas.create_image(
+    538.0,
+    350.0,
+    image=image_1
+)
+button_image_1 = PhotoImage(file=relative_to_assets("button_1.png"))
+button_1 = Button(
+    image=button_image_1,
+    borderwidth=0,
+    highlightthickness=0,
+    command=button,
+    relief="flat",
+    bg="#E5C7CD",
+    activebackground="#E5C7CD"  # Set active background color
+)
+button_1.place(
+    x=480.0,
+    y=243.0,
+    width=123.90243530273438,
+    height=119.5294189453125
+)
+
+
+window.resizable(False, False)
+window.mainloop()
+code 3:
+from pathlib import Path
+
+# from tkinter import *
+# Explicit imports to satisfy Flake8
+from tkinter import Tk, Canvas, Entry, Button, PhotoImage, filedialog
+import tkinter as tk
+import os
+from PIL import Image, ImageTk
+import numpy as np
+from keras.models import load_model
+from keras.preprocessing import image
+
+
+model = load_model('C:/Users/hp/Desktop/ECG/ECG.h5', compile=False)
+
+OUTPUT_PATH = Path(_file_).parent
+ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\hp\Desktop\ECG\Gui\build\assets\frame2")
+
+
+def relative_to_assets(path: str) -> Path:
+    return ASSETS_PATH / Path(path)
+
+
+uploaded_image_path = None  # Global variable to store the uploaded image path
+
+
+def upload_image():
+    global uploaded_image_path
+    file_path = filedialog.askopenfilename(initialdir=os.getcwd(), title="Select Image",
+                                           filetypes=[("Image Files", "*.png *.jpg *.jpeg *.gif")])
+    if file_path:
+        uploaded_image_path = file_path  # Store the uploaded image path
+        # Display the uploaded image on the canvas
+        image = Image.open(file_path)
+        photo = ImageTk.PhotoImage(image)
+        canvas.create_image(560,150, image=photo)
+        canvas.image = photo
+        print("Image uploaded successfully:", file_path)
+
+
+def predict_class():
+    global uploaded_image_path
+    if uploaded_image_path:
+        img = image.load_img(uploaded_image_path, target_size=(64, 64))  # Load and resize the image
+        x = image.img_to_array(img)
+        x = np.expand_dims(x, axis=0)
+        pred = model.predict(x)
+        predicted_class_index = np.argmax(pred)
+
+        index = ['Left Bundle Branch Block', 'Normal', 'Premature Atrial Contraction',
+                 'Premature Ventricular Contractions', 'Right Bundle Branch Block', 'Ventricular Fibrillation']
+        result = index[predicted_class_index]
+
+        entry_1.delete(0, tk.END)  # Clear previous text in entry_1
+        entry_1.insert(0, result)  # Set predicted result in entry_1
+        print("Predicted class:", result)
+    else:
+        print("Please upload an image first.")
+
+
+# Create the main window
+window = Tk()
+window.title("ECG predictive system")
+window.geometry("1100x700")
+window.configure(bg ="#FFFFFF")
+
+canvas = Canvas(
+    window,
+    bg = "#FFFFFF",
+    height = 700,
+    width = 1082,
+    bd = 0,
+    highlightthickness = 0,
+    relief = "ridge"
+)
+
+canvas.place(x = 0, y = 0)
+image_image_1 = PhotoImage(
+    file=relative_to_assets("1.png"))
+image_1 = canvas.create_image(
+    561.0,
+    379.0,
+    image=image_image_1
+)
+
+button_image_1 = PhotoImage(
+    file=relative_to_assets("3.png"))
+button_1 = Button(
+    image=button_image_1,
+    borderwidth=0,
+    highlightthickness=0,
+    command=predict_class,
+    relief="flat"
+)
+button_1.place(
+    x=830.0,
+    y=625.0,
+    width=279.0,
+    height=63.0
+)
+
+entry_1 = Entry(
+    bd=0,
+    bg="#FFFFFF",
+    fg="#000716",
+    highlightthickness=1,
+    font=("Satoshi Bold", 25 * -1)
+)
+entry_1.place(
+    x=385.0,
+    y=620.0,
+    width=330.0,
+    height=70.0
+)
+
+button_image_2 = PhotoImage(
+    file=relative_to_assets("2.png"))
+button_2 = Button(
+    image=button_image_2,
+    borderwidth=0,
+    highlightthickness=0,
+    command=upload_image,
+    relief="flat"
+)
+button_2.place(
+    x=2.0,
+    y=635.0,
+    width=279.0,
+    height=63.0
+)
+window.resizable(False, False)
+window.mainloop()
+thresholding code:
+# import os
+# from PIL import Image, ImageTk
+#
+#
+# def upload_image():
+#     file_path = filedialog.askopenfilename(initialdir=os.getcwd(), title="Select Image", filetypes=[("Image Files", "*.png *.jpg *.jpeg *.gif")])
+#     if file_path:
+#         # Display the uploaded image on the canvas
+#         image = Image.open(file_path)
+#         image = image.resize((300, 300), Image.ANTIALIAS)
+#         photo = ImageTk.PhotoImage(image)
+#         canvas.create_image(150, 150, image=photo)
+#         canvas.image = photo  # Keep a reference to avoid garbage collection
+#         print("Image uploaded successfully:", file_path)
+#
+# # Create the main window
+# root = tk.Tk()
+# root.title("Image Uploader")
+#
+# # Create a canvas widget to display the image
+# canvas = tk.Canvas(root, width=300, height=300, borderwidth=2, relief="solid")
+# canvas.pack(pady=20)
+#
+# # Create a button for uploading the image
+# upload_button = tk.Button(root, text="Upload Image", command=upload_image)
+# upload_button.pack()
+#
+# # Run the main loop
+# root.mainloop()
+
+
+# import cv2
+#
+# # Read the input image
+# input_image = cv2.imread('Gui/build/a.png', cv2.IMREAD_GRAYSCALE)
+#
+# # Apply thresholding (binary thresholding)
+# _, output_image = cv2.threshold(input_image, 230, 255, cv2.THRESH_BINARY)
+#
+# # Display the input image
+# # cv2.imshow('Input Image', input_image)
+# # cv2.waitKey(0)
+# # cv2.destroyAllWindows()
+#
+# # Display the output image
+# cv2.imshow('Thresholded Image', output_image)
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
+
+
+import cv2
+import os
+
+
+def apply_thresholding_to_folder(folder_path, output_folder):
+    # Create output folder if it doesn't exist
+    os.makedirs(output_folder, exist_ok=True)
+
+    # Iterate over all subdirectories in the folder
+    for subfolder in os.listdir(folder_path):
+        subfolder_path = os.path.join(folder_path, subfolder)
+        if os.path.isdir(subfolder_path):
+            output_subfolder = os.path.join(output_folder, subfolder)
+            os.makedirs(output_subfolder, exist_ok=True)
+            print(f"Processing images in {subfolder}...")
+            # Iterate over all files in the subfolder
+            for filename in os.listdir(subfolder_path):
+                if filename.endswith('.png') or filename.endswith('.jpg') or filename.endswith('.jpeg'):
+                    # Read the input image
+                    input_image = cv2.imread(os.path.join(subfolder_path, filename), cv2.IMREAD_GRAYSCALE)
+
+                    # Apply thresholding (binary thresholding)
+                    _, output_image = cv2.threshold(input_image, 230, 255, cv2.THRESH_BINARY)
+
+                    # Write the thresholded image to the output folder
+                    output_path = os.path.join(output_subfolder, filename)
+                    cv2.imwrite(output_path, output_image)
+                    print(f"Thresholding applied to {filename} and saved as {output_path}")
+            print(f"Processing images in {subfolder} done.")
+
+
+# Define paths
+train_folder = 'data/train/'
+test_folder = 'data/test/'
+output_train_folder = 'data/train_thresholded/'
+output_test_folder = 'data/test_thresholded/'
+
+# Apply thresholding to images in the train folder
+apply_thresholding_to_folder(train_folder, output_train_folder)
+
+# Apply thresholding to images in the test folder
+apply_thresholding_to_folder(test_folder, output_test_folder)
